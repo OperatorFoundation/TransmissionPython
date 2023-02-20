@@ -1,4 +1,3 @@
-import board
 import busio
 import json
 import time
@@ -9,7 +8,7 @@ from .length_prefix_helper import readWithLengthPrefixHelper, writeWithLengthPre
 class SerialConnection(Connection):
     maxRetries = 10
 
-    def __init__(self, tx=board.TX, rx=board.RX, baudrate=None):
+    def __init__(self, tx, rx, baudrate=None):
         if baudrate:
             self.serial = busio.UART(tx, rx, baudrate=baudrate)
         else:
@@ -63,13 +62,15 @@ class SerialConnection(Connection):
     def write(self, obj):
         if type(obj) == str:
             self.serial.write(bytes(obj))
+            return True
         elif type(obj) == bytes:
             self.serial.write(obj)
+            return True
         else:
-            self.writeWithLengthPrefix(bytes(json.dumps(obj)), 64)
+            return self.writeWithLengthPrefix(bytes(json.dumps(obj)), 64)
 
     def writeWithLengthPrefix(self, data, prefixSizeInBits):
-        writeWithLengthPrefixHelper(self, data, prefixSizeInBits)
+        return writeWithLengthPrefixHelper(self, data, prefixSizeInBits)
 
     def close(self):
         pass

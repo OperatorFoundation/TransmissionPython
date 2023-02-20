@@ -1,0 +1,2 @@
+setuptools==67.3.2
+Adafruit-Blinka==8.15.0

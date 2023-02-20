@@ -1,11 +1,11 @@
 class Connection:
-    def read(self, size):
+    def readSize(self, size):
         pass
 
     def unsafeRead(self, size):
         pass
 
-    def read(self, maxSize):
+    def readMaxSize(self, maxSize):
         pass
 
     def readWithLengthPrefix(self, prefixSizeInBits):
