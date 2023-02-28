@@ -58,7 +58,7 @@ class UsbSerialConnection(Connection):
 
     def write(self, obj):
         if type(obj) == str:
-            self.serial.write(bytes(obj))
+            self.serial.write(bytes(obj, 'utf-8'))
             return True
         elif type(obj) == bytes:
             self.serial.write(obj)
