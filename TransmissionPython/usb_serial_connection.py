@@ -9,7 +9,7 @@ class UsbSerialConnection(Connection):
     maxRetries = 10
 
     def __init__(self):
-        self.serial = usb_cdc.data
+        self.serial = usb_cdc.console
 
     def readSize(self, size):
         result = self.unsafeRead(size)
