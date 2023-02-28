@@ -11,6 +11,9 @@ class Connection:
     def readWithLengthPrefix(self, prefixSizeInBits):
        pass
 
+    def read(self, readType):
+        pass
+
     # str or bytes are both acceptable
     def write(self, string):
         pass
